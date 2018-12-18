@@ -24,7 +24,7 @@ if __name__ == '__main__':
     rospy.init_node('Reset_Start_pos_wason2', anonymous=True)
     
     controller_commander.set_controller_mode(controller_commander.MODE_HALT, 1, [],[])
-    controller_commander.set_controller_mode(controller_commander.MODE_AUTO_TRAJECTORY, 1, [],[])  
+    controller_commander.set_controller_mode(controller_commander.MODE_AUTO_TRAJECTORY, 0.5, [],[])  
         
     print "============ Printing robot Pose"
     print controller_commander.get_current_pose_msg()  

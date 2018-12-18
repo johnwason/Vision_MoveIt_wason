@@ -7,7 +7,7 @@ import general_robotics_toolbox as rox
 import general_robotics_toolbox.urdf as urdf
 import general_robotics_toolbox.ros_msg as rox_msg
 #from general_robotics_toolbox import ros_tf as tf
-from arm_composites_manufacturing_process import PayloadTransformListener
+from industrial_payload_manager.payload_transform_listener import PayloadTransformListener
 
 from rpi_abb_irc5.ros.rapid_commander import RAPIDCommander
 from safe_kinematic_controller.ros.commander import ControllerCommander
@@ -121,6 +121,7 @@ def main():
     print "============ Executing plan3"
     try:
         controller_commander.compute_cartesian_path_and_move(pose_target2, avoid_collisions=False)
+        pass
     except:
         pass
     print 'Execution Finished.'
@@ -152,6 +153,8 @@ def main():
         
         print "============ Generating plan 5"
         
+        time.sleep(2)
+        
         panel_target_pose = listener.lookupTransform("world", "panel_nest_leeward_mid_panel_target", rospy.Time(0))        
         panel_gripper_target_pose = listener.lookupTransform("leeward_mid_panel", "leeward_mid_panel_gripper_target", rospy.Time(0))        
         pose_target=panel_target_pose * panel_gripper_target_pose
@@ -159,7 +162,8 @@ def main():
         print pose_target.p               
         
         pose_target2=copy.deepcopy(pose_target)
-        pose_target2.p[2] += 0.5
+        pose_target2.p[2] += 0.3
+        pose_target2.p[1] -= 0.2
         
         print "============ Executing plan 5"
         controller_commander.plan_and_move(pose_target2)

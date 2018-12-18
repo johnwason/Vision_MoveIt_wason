@@ -11,8 +11,8 @@ import time
 import general_robotics_toolbox as rox
 from general_robotics_toolbox import ros_msg as rox_msg
 from general_robotics_toolbox import ros_tf as tf
-from arm_composites_manufacturing_process import PayloadTransformListener
-from arm_composites_manufacturing_process import PayloadArray
+from industrial_payload_manager.payload_transform_listener import PayloadTransformListener
+from industrial_payload_manager.msg import PayloadArray
 from cv_bridge import CvBridge, CvBridgeError
 import sys
 import threading
